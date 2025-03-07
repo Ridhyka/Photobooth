@@ -1,0 +1,55 @@
+body {
+  background-color: #f3c7e9;
+  font-family: "Brush Script MT", cursive;
+  text-align: center;
+}
+
+/* Flexbox to align strip & text */
+.photo-strip-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Left side - Tilted Photo Strip */
+.strip-wrapper {
+  transform: rotate(-10deg);
+  margin-right: 50px;
+}
+
+.photo-strip {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  gap: 10px;
+}
+
+.strip-image {
+  width: 200px;
+  height: 130px;
+  background: lightgray;
+  border-radius: 5px;
+}
+
+/* Right side - Text & Download Button */
+.strip-text {
+  font-size: 2rem;
+  font-style: italic;
+}
+
+.download-btn {
+  background: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px gray;
+  margin-top: 20px;
+}
