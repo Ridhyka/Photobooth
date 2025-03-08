@@ -197,7 +197,7 @@ const downloadStrip = () => {
     <div style={styles.stripWrapper}>
         <div style={{ ...styles.photoStrip, backgroundColor: stripColor }} ref={stripRef}>
           {images.slice(0, 3).map((img, index) => (
-            <img key={index} src={img} alt={`Captured ${index}`} style={styles.stripImage} />
+            <img key={index} src={img.src || img} alt={`Captured ${index}`} style={styles.stripImage} />
           ))}
         </div>
       </div>

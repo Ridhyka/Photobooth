@@ -50,6 +50,8 @@
 
 
 // import { color } from "html2canvas/dist/types/css/types/color";
+
+
 import checksBg from "../assets/checks.jpg";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -60,9 +62,10 @@ function UploadPage() {
 
   const handleImageUpload = (event) => {
     const files = event.target.files;
-    const imagesArray = Array.from(files).map((file) =>
-      URL.createObjectURL(file)
-    );
+    const imagesArray = Array.from(files).map((file) =>({
+      src:  URL.createObjectURL(file),
+    filter: "none",
+  }));
     setUploadedImages([...uploadedImages, ...imagesArray]);
   };
 
@@ -81,7 +84,7 @@ function UploadPage() {
 
       <div style={styles.imagePreview}>
         {uploadedImages.map((img, index) => (
-          <img key={index} src={img} alt="Uploaded" style={styles.image} />
+          <img key={index} src={img.src} alt="Uploaded" style={styles.image} />
         ))}
       </div>
 

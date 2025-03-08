@@ -30,31 +30,81 @@
 // export default Capture;
 
 import checksBg from "../assets/checks.jpg";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Webcam from "react-webcam";
+
+
 
 const Capture = () => {
   const webcamRef = useRef(null);
   const navigate = useNavigate();
   const [images, setImages] = useState([]);
-
+  const [filter, setFilter] = useState("none");
+  
+  // const capturePhoto = () => {
+  //   if (images.length >= 3) return;
+  //   const imageSrc = webcamRef.current.getScreenshot();
+  //   // setImages([...images, imageSrc]);
+   
+  //   setImages([...images, { src: imageSrc, filter }]);
+  // };
   const capturePhoto = () => {
     if (images.length >= 3) return;
     const imageSrc = webcamRef.current.getScreenshot();
-    setImages([...images, imageSrc]);
+  
+    if (imageSrc) {
+      setImages((prevImages) => [...prevImages, { src: imageSrc, filter }]);
+      console.log("Captured Images:", imageSrc); // Debugging
+    } else {
+      console.error("Failed to capture image.");
+    }
   };
+  
+
+  // const goToPhotoStrip = () => {
+  //   navigate("/strip", { state: { images} });
+  // };
+  const [isReadyToNavigate, setIsReadyToNavigate] = useState(false);
 
   const goToPhotoStrip = () => {
-    navigate("/strip", { state: { images } });
+    setIsReadyToNavigate(true);  // Set flag to navigate after state update
   };
-
+  
+  useEffect(() => {
+    if (isReadyToNavigate && images.length === 3) {
+      console.log("Navigating with images:", images); // Debugging
+      navigate("/strip", { state: { images } });
+    }
+  }, [isReadyToNavigate, images, navigate]); 
+  
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>Capture Photo</h1>
-      <Webcam ref={webcamRef} screenshotFormat="image/png" style={styles.video} />
+      {/* <Webcam ref={webcamRef} screenshotFormat="image/png" style={styles.video} /> */}
+     
+  {/* ✅ Live Webcam Feed with Filter */}
+  <Webcam 
+        ref={webcamRef} 
+        screenshotFormat="image/png" 
+        mirrored={false}
+        style={{ ...styles.video, filter: filter }} 
+      />
+
+      {/* ✅ Filter Selection */}
+      <div style={styles.filterButtons}>
+        <button style={styles.filterButton} onClick={() => setFilter("none")}>No Filter</button>
+        <button style={styles.filterButton} onClick={() => setFilter("grayscale(100%)")}>Grayscale</button>
+        <button style={styles.filterButton} onClick={() => setFilter("sepia(100%)")}>Sepia</button>
+        <button style={styles.filterButton} onClick={() => setFilter("contrast(200%)")}>High Contrast</button>
+        <button style={styles.filterButton} onClick={() => setFilter("saturate(200%)")}>Saturated</button>
+      </div>
+
+
       <button onClick={capturePhoto} style={styles.btn}>Capture</button>
       {images.length === 3 && <button onClick={goToPhotoStrip} style={styles.btn}>Generate Strip</button>}
+
+      
     </div>
   );
 };
@@ -94,6 +144,30 @@ const styles = {
     borderRadius: "10px",
     boxShadow: "2px 2px 5px gray",
     marginTop: "20px",
+  },
+
+
+  // new
+  filterButtons: {
+    display: "flex",
+    gap: "10px",
+
+    marginTop: "10px",
+    
+  },
+  filterButton:{
+    background:"white",
+    borderRadius:"5px",
+    fontFamily: "Homemade Apple, cursive",
+    fontSize:"15px",
+
+  },
+ 
+  capturedImage: {
+    width: "100px",
+    height: "75px",
+    borderRadius: "5px",
+    boxShadow: "2px 2px 5px rgba(0,0,0,0.2)",
   },
 };
 
