@@ -115,9 +115,12 @@
 // };
 
 // export default PhotoStrip;
+
+
 import { FaGithub } from "react-icons/fa";
 import checksBg from "../assets/checks.jpg";
-import React, { useRef } from "react";
+import { FaPalette } from "react-icons/fa";
+import React, { useRef , useState } from "react";
 import html2canvas from "html2canvas";
 import { useLocation } from "react-router-dom";
 
@@ -126,77 +129,13 @@ const PhotoStrip = () => {
   const { images } = location.state || { images: [] };
   const stripRef = useRef(null);
 
-//   const downloadStrip = () => {
-//     if (!stripRef.current) return;
+  // State to manage the background color of the photo strip
+  const [stripColor, setStripColor] = useState("white");
 
-//     html2canvas(stripRef.current, { backgroundColor: null, scale: 2 }).then(
-//       (canvas) => {
-//         const link = document.createElement("a");
-//         link.href = canvas.toDataURL("image/png");
-//         link.download = "photo_strip.png";
-//         link.click();
-//       }
-//     );
-//   };
-// const downloadStrip = () => {
-//     if (!stripRef.current) return;
-  
-//     // Create a copy of the photo strip for accurate capture
-//     const clonedStrip = stripRef.current.cloneNode(true);
-//     clonedStrip.style.transform = "none"; // Remove tilt for clean capture
-//     clonedStrip.style.position = "absolute";
-//     clonedStrip.style.left = "-9999px"; // Move off-screen
-//     document.body.appendChild(clonedStrip);
-  
-//     html2canvas(clonedStrip, { backgroundColor: null, scale: 2 }).then(
-//       (canvas) => {
-//         const link = document.createElement("a");
-//         link.href = canvas.toDataURL("image/png");
-//         link.download = "photo_strip.png";
-//         link.click();
-  
-//         // Cleanup - remove cloned strip
-//         document.body.removeChild(clonedStrip);
-//       }
-//     );
-//   };
-  
-  
-// const downloadStrip = () => {
-//     if (!stripRef.current) return;
-  
-//     // Clone the strip for proper capture
-//     const clonedStrip = stripRef.current.cloneNode(true);
-//     clonedStrip.style.transform = "none"; // Remove tilt for clean capture
-//     clonedStrip.style.position = "absolute";
-//     clonedStrip.style.left = "-9999px"; // Move off-screen
-//     document.body.appendChild(clonedStrip);
-  
-//     html2canvas(clonedStrip, { backgroundColor: null, scale: 2 }).then(
-//       (canvas) => {
-//         document.body.removeChild(clonedStrip); // Cleanup
-  
-//         // Create a new canvas to apply tilt
-//         const tiltedCanvas = document.createElement("canvas");
-//         const ctx = tiltedCanvas.getContext("2d");
-  
-//         // Set dimensions slightly larger to accommodate tilt
-//         tiltedCanvas.width = canvas.width;
-//         tiltedCanvas.height = canvas.height;
-  
-//         // Apply rotation (tilt) of -10 degrees
-//         ctx.translate(canvas.width / 2, canvas.height / 2);
-//         ctx.rotate((-10 * Math.PI) / 180);
-//         ctx.drawImage(canvas, -canvas.width / 2, -canvas.height / 2);
-  
-//         // Convert to image and download
-//         const link = document.createElement("a");
-//         link.href = tiltedCanvas.toDataURL("image/png");
-//         link.download = "photo_strip.png";
-//         link.click();
-//       }
-//     );
-//   };
+   // ✅ List of colors for the user to choose
+   const colors = ["#f3c7e9", "#FFD700", "#90EE90", "#FF6347", "#ADD8E6", "#FFFFFF"];
+
+
 const downloadStrip = () => {
     if (!stripRef.current) return;
   
@@ -243,7 +182,7 @@ const downloadStrip = () => {
   return (
     <div style={styles.container}>
       {/* Tilted Photo Strip */}
-      <div style={styles.stripWrapper}>
+      {/* <div style={styles.stripWrapper}>
         <div style={styles.photoStrip} ref={stripRef}>
           {images.slice(0, 3).map((img, index) => (
             <img
@@ -253,16 +192,47 @@ const downloadStrip = () => {
               style={styles.stripImage}
             />
           ))}
+        </div></div> */}
+    
+    <div style={styles.stripWrapper}>
+        <div style={{ ...styles.photoStrip, backgroundColor: stripColor }} ref={stripRef}>
+          {images.slice(0, 3).map((img, index) => (
+            <img key={index} src={img} alt={`Captured ${index}`} style={styles.stripImage} />
+          ))}
         </div>
       </div>
+     
+      {/* <div style={{ position: "absolute", top: 20, left: 20 }}>
+        <label style={{ fontSize: "18px", fontWeight: "bold", marginRight: "10px" }}>
+          Select Strip Color:
+        </label>
+        <input
+          type="color"
+          value={stripColor}
+          onChange={(e) => setStripColor(e.target.value)}
+          style={{ width: "40px", height: "40px", border: "none", cursor: "pointer" }}
+        />
+      </div> */}
 
+     <div>
+      {/* ✅ Color Picker Section */}
+      <div style={styles.colorPicker}>
+        <p style={styles.choose}>Choose Strip Color:</p>
+        {colors.map((color) => (
+          <button
+            key={color}
+            style={{ ...styles.colorButton, backgroundColor: color }}
+            onClick={() => setStripColor(color)}
+          />
+        ))}
+      </div>
       {/* Right Side - Text & Download Button */}
       <div style={styles.downloadSection}>
         <h2 style={styles.stripText}>Your photo strip <br></br>is ready</h2>
         <button style={styles.downloadBtn} onClick={downloadStrip}>
           Download
         </button>
-      </div>
+      </div></div>
 <footer style={styles.footer}>
       <a href="https://github.com/Ridhyka" target="_blank" rel="noopener noreferrer" style={{ color:"black", fontSize: "35px",fontFamily: "WindSong, cursive", }}>
         <FaGithub />Ray
@@ -285,6 +255,20 @@ const styles = {
     backgroundsize: "cover",
     backgroundrepeat: "repeat",
   },
+  colorPicker: {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    marginBottom: "20px",
+  },
+
+  colorButton: {
+    width: "30px",
+    height: "30px",
+    borderRadius: "50%",
+    border: "1px solid black",
+    cursor: "pointer",
+  },
 
   /* White Tilted Strip */
   stripWrapper: {
@@ -292,15 +276,28 @@ const styles = {
     marginRight: "50px",
   },
 
+  // photoStrip: {
+  //   background: "white",
+  //   padding: "20px",
+  //   // borderRadius: "10px",
+  //   boxShadow: "5px 5px 15px rgba(0, 0, 0, 0.2)",
+  //   display: "flex",
+  //   flexDirection: "column",
+  //   alignItems: "center",
+  //   width: "200px",
+  //   height: "450px",
+  //   justifyContent: "space-between",
+  //   position: "relative",
+  // },
+
+  /* ✅ Applied Dynamic Background Color */
   photoStrip: {
-    background: "white",
     padding: "20px",
-    borderRadius: "10px",
     boxShadow: "5px 5px 15px rgba(0, 0, 0, 0.2)",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "250px",
+    width: "200px",
     height: "450px",
     justifyContent: "space-between",
     position: "relative",
@@ -337,9 +334,14 @@ const styles = {
     marginTop: "20px",
     fontFamily: "Homemade Apple, cursive",
   },
+  choose:{
+    fontFamily: "Homemade Apple, cursive",
+    fontSize:"20px",
+
+  }
 };
+
+
 
 export default PhotoStrip;
 
-
-     
