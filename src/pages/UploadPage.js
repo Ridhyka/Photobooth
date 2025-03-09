@@ -84,7 +84,7 @@ function UploadPage() {
 
       <div style={styles.imagePreview}>
         {uploadedImages.map((img, index) => (
-          <img key={index} src={img.src} alt="Uploaded" style={styles.image} />
+          <img key={index} src={img.src } alt="Uploaded" style={styles.image} />
         ))}
       </div>
 
@@ -136,6 +136,7 @@ const styles = {
     padding: "10px 20px",
     fontSize: "18px",
     backgroundColor: "white",
+    fontFamily: "Homemade Apple, cursive",
     color: "black",
     border: "none",
     borderRadius: "8px",

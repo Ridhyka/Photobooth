@@ -52,14 +52,32 @@ const Capture = () => {
   const capturePhoto = () => {
     if (images.length >= 3) return;
     const imageSrc = webcamRef.current.getScreenshot();
+
+    const img = new Image();
+  img.src = imageSrc;
+  img.onload = () => {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // Set canvas size to match the image
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    // Apply the selected filter
+    ctx.filter = filter;
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+    // Convert the canvas to a data URL (filtered image)
+    const filteredImage = canvas.toDataURL("image/png");
   
     if (imageSrc) {
-      setImages((prevImages) => [...prevImages, { src: imageSrc, filter }]);
-      console.log("Captured Images:", imageSrc); // Debugging
+      setImages((prevImages) => [...prevImages, { src: filteredImage, filter }]);
+      console.log("Captured Images:", filteredImage); // Debugging
     } else {
       console.error("Failed to capture image.");
     }
   };
+}
   
 
   // const goToPhotoStrip = () => {
