@@ -5,10 +5,11 @@
 
 PhotoBooth is a **React-based web application** that enables users to **capture images using a webcam**, **upload local images**, and **apply CSS-based filters** for creative effects. It leverages **state management with React Hooks** and **context-based navigation with React Router** to provide a seamless user experience.  
 
-Users can generate a **customizable photo strip** with dynamic background colors and a unique **tilted effect**, utilizing **HTML5 Canvas (html2canvas)** for rendering and exporting the final image. The app ensures an **interactive UI** with real-time previews and **efficient memory handling** using **Object URLs (createObjectURL)** for uploaded files.  
+ 
 
-## ✨ Features  
-- **Webcam Capture** with real-time filters  
+## 🛠️ **Tech Stack** 
+- **Webcam Capture** with real-time filters
+- **Frontend:** React.js (with Hooks & State Management)  
 - **Image Upload & Preview** functionality  
 - **CSS Filter Effects** (Grayscale, Sepia, Saturation, Contrast)  
 - **Photo Strip Generation** with adjustable backgrounds  
@@ -27,12 +28,6 @@ Users can generate a **customizable photo strip** with dynamic background colors
 
 ---
 
-## 🛠️ **Tech Stack**
-- **Frontend:** React.js (with Hooks & State Management)  
-- **Styling:** Custom CSS for a clean and beautiful UI  
-- **Image Processing:** `html2canvas` for capturing and exporting photo strips  
-
----
 
 ## 📸 **Screenshots**
 
