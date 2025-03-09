@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# 📸 PhotoBooth - Fun & Stylish Image Capturing App!
+## 🚀 Live Demo  
+🔗 [PhotoBooth - Try it Now!](https://photobooth7.vercel.app/)  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+PhotoBooth is a **React-based web application** that enables users to **capture images using a webcam**, **upload local images**, and **apply CSS-based filters** for creative effects. It leverages **state management with React Hooks** and **context-based navigation with React Router** to provide a seamless user experience.  
 
-In the project directory, you can run:
+Users can generate a **customizable photo strip** with dynamic background colors and a unique **tilted effect**, utilizing **HTML5 Canvas (html2canvas)** for rendering and exporting the final image. The app ensures an **interactive UI** with real-time previews and **efficient memory handling** using **Object URLs (createObjectURL)** for uploaded files.  
 
-### `npm start`
+## ✨ Features  
+- **Webcam Capture** with real-time filters  
+- **Image Upload & Preview** functionality  
+- **CSS Filter Effects** (Grayscale, Sepia, Saturation, Contrast)  
+- **Photo Strip Generation** with adjustable backgrounds  
+- **HTML Canvas (html2canvas)** for rendering and exporting images  
+- **Styled UI with smooth navigation (React Router)**  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🚀 **Features**
+- 📷 **Capture Photos:** Take pictures directly from your webcam  
+- 🖼️ **Upload Images:** Select images from your device  
+- 🎨 **Apply Filters:** Choose from multiple filter effects  
+- 🏞 **Customize Photo Strip:** Change background colors dynamically  
+- ⬇️ **Download Photo Strip:** Save your final masterpiece with a cool tilted effect  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🛠️ **Tech Stack**
+- **Frontend:** React.js (with Hooks & State Management)  
+- **Styling:** Custom CSS for a clean and beautiful UI  
+- **Image Processing:** `html2canvas` for capturing and exporting photo strips  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📸 **Screenshots**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 📌 Home Page  
+![Home Page](public/images/home.png)  
 
-### `npm run eject`
+### 📸 Capture Page  
+![Capture Page](public/images/capture.png)  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 🎞️ Photo Strip Page  
+![Photo Strip Page](public/images/strip.png)  
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
+## 🚀 Future Advancements  
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **🔄 Undo & Redo Feature** – Allow users to revert changes while applying filters.  
+- **🎭 Advanced Filters** – Integrate AI-powered filters using TensorFlow.js for face detection and effects.  
+- **🌆 Background Removal** – Implement AI-based background removal for better customization.  
+- **📱 Mobile-Friendly UI** – Improve responsiveness for a seamless experience on all devices.  
+- **🎨 Sticker & Text Overlay** – Let users add stickers, emojis, and custom text to their photos.  
+- **📂 Cloud Storage Integration** – Save and retrieve photo strips via Firebase or AWS S3.  
+- **📤 Social Media Sharing** – Directly share photo strips to Instagram, Facebook, or Twitter.  
+- **🖼️ GIF & Collage Creation** – Allow users to export their photo strips as GIFs or collages.  
 
-## Learn More
+Stay tuned for exciting updates! 🚀✨  
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📥 **Installation & Setup**
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/your-username/photobooth.git
+   cd photobooth
